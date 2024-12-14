@@ -17,7 +17,7 @@ fi
 
 # Install oh-my-zsh for /root and each user in /home/*
 for user in /root /home/*; do
-  if [ ! -d "$user/.oh-my-zsh" ]; then
+  if [ -d "$user" ] && [ ! -d "$user/.oh-my-zsh" ]; then
     runuser -l $(basename $user) -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   fi
 done
@@ -34,14 +34,18 @@ curl -fsSL $THEME -o /etc/skel/oh-my-posh-config.json
 
 # Copy the oh-my-posh configuration file to each user's home directory and enable oh-my-posh instant prompt in ~/.zshrc
 for user in /root /home/*; do
-  cp /etc/skel/oh-my-posh-config.json $user/
-  chown $(basename $user):$(basename $user) $user/oh-my-posh-config.json
-  chmod 644 $user/oh-my-posh-config.json
-  runuser -l $(basename $user) -c 'echo "source ~/.profile && eval \"$(oh-my-posh init zsh --config $HOME/oh-my-posh-config.json)\"" >> $HOME/.zshrc'
+  if [ -d "$user" ] && [ -d "$user/.oh-my-zsh" ]; then
+    cp /etc/skel/oh-my-posh-config.json $user/
+    chown $(basename $user):$(basename $user) $user/oh-my-posh-config.json
+    chmod 644 $user/oh-my-posh-config.json
+    runuser -l $(basename $user) -c 'echo "source ~/.profile && eval \"$(oh-my-posh init zsh --config $HOME/oh-my-posh-config.json)\"" >> $HOME/.zshrc'
+  fi
 done
 
 # Install additional plugins for each user and /root
 PLUGINS=${plugins:-"git debian docker sudo vscode poetry postgres cp"}
 for user in /root /home/*; do
-  runuser -l $(basename $user) -c "sed -i '/^plugins=/ s/)/ $PLUGINS)/' \$HOME/.zshrc"
+  if [ -d "$user" ] && [ -d "$user/.oh-my-zsh" ]; then
+    runuser -l $(basename $user) -c "sed -i '/^plugins=/ s/)/ $PLUGINS)/' \$HOME/.zshrc"
+  fi
 done
