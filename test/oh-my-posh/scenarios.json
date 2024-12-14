@@ -1,0 +1,16 @@
+{
+    "oh-my-posh-default": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "oh-my-posh": {}
+        }
+    },
+    "oh-my-posh-additional-plugins": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "oh-my-posh": {
+                "additionalPlugins": "zsh-autosuggestions,zsh-syntax-highlighting"
+            }
+        }
+    }
+}

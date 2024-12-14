@@ -50,6 +50,27 @@ $ color
 my favorite color is green
 ```
 
+### `oh-my-posh`
+
+Running `oh-my-posh` inside the built container will install oh-my-posh with transient prompt using oh-my-zsh.
+
+```jsonc
+{
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+        "ghcr.io/devcontainers/feature-starter/oh-my-posh:1": {
+            "additionalPlugins": "zsh-autosuggestions,zsh-syntax-highlighting"
+        }
+    }
+}
+```
+
+```bash
+$ zsh
+
+# oh-my-posh with transient prompt using oh-my-zsh is now installed and configured.
+```
+
 ## Repo and Feature Structure
 
 Similar to the [`devcontainers/features`](https://github.com/devcontainers/features) repo, this repository has a `src` folder.  Each Feature has its own sub-folder, containing at least a `devcontainer-feature.json` and an entrypoint script `install.sh`. 
@@ -60,6 +81,9 @@ Similar to the [`devcontainers/features`](https://github.com/devcontainers/featu
 │   │   ├── devcontainer-feature.json
 │   │   └── install.sh
 │   ├── color
+│   │   ├── devcontainer-feature.json
+│   │   └── install.sh
+│   ├── oh-my-posh
 │   │   ├── devcontainer-feature.json
 │   │   └── install.sh
 |   ├── ...
@@ -128,6 +152,7 @@ By default, each Feature will be prefixed with the `<owner/<repo>` namespace.  F
 ```
 ghcr.io/devcontainers/feature-starter/color:1
 ghcr.io/devcontainers/feature-starter/hello:1
+ghcr.io/devcontainers/feature-starter/oh-my-posh:1
 ```
 
 The provided GitHub Action will also publish a third "metadata" package with just the namespace, eg: `ghcr.io/devcontainers/feature-starter`.  This contains information useful for tools aiding in Feature discovery.

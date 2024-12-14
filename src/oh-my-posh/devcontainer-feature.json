@@ -1,0 +1,16 @@
+{
+    "name": "oh-my-posh",
+    "id": "oh-my-posh",
+    "version": "1.0.0",
+    "description": "A feature to install oh-my-posh with transient prompt using oh-my-zsh",
+    "options": {
+        "additionalPlugins": {
+            "type": "string",
+            "default": "",
+            "description": "Comma-separated list of additional zsh plugins to install"
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ]
+}
