@@ -9,7 +9,8 @@
         "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
             "oh-my-posh": {
-                "plugins": "zsh-autosuggestions zsh-syntax-highlighting"
+                "plugins": "zsh-autosuggestions zsh-syntax-highlighting",
+                "theme": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/pure.omp.json"
             }
         }
     }

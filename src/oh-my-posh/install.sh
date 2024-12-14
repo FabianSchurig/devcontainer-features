@@ -38,7 +38,7 @@ if ! command -v oh-my-posh &>/dev/null; then
 fi
 
 # Fetch the oh-my-posh configuration file from the provided URL and copy it to /etc/skel
-THEME=${theme:-https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/refs/heads/main/themes/powerlevel10k_rainbow.omp.json}
+THEME=${THEME:-https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/refs/heads/main/themes/powerlevel10k_rainbow.omp.json}
 curl -fsSL $THEME -o /etc/skel/oh-my-posh-config.json
 
 # Copy the oh-my-posh configuration file to each user's home directory and enable oh-my-posh instant prompt in ~/.zshrc
@@ -52,7 +52,7 @@ for user in /root /home/*; do
 done
 
 # Install additional plugins for each user and /root
-PLUGINS=${plugins:-"git debian docker sudo vscode poetry postgres cp"}
+PLUGINS=${PLUGINS:-"git debian docker sudo vscode poetry postgres cp"}
 
 for user in /root /home/*; do
   if [ ! -d "$user" ] || [ ! -d "$user/.oh-my-zsh" ] || [ ! -f "$user/.zshrc" ]; then
