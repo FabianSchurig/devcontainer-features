@@ -10,7 +10,7 @@
         "features": {
             "oh-my-posh": {
                 "plugins": "zsh-autosuggestions zsh-syntax-highlighting",
-                "theme": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/pure.omp.json"
+                "theme": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/refs/heads/main/themes/pure.omp.json"
             }
         }
     }

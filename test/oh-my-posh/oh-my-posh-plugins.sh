@@ -19,7 +19,7 @@ for user_home in /home/*; do
         check "oh-my-posh configuration is applied for $user_home" grep "oh-my-posh init zsh --config" "$user_home/.zshrc"
         check "zsh-autosuggestions plugin is installed for $user_home" grep "zsh-autosuggestions" "$user_home/.zshrc"
         check "zsh-syntax-highlighting plugin is installed for $user_home" grep "zsh-syntax-highlighting" "$user_home/.zshrc"
-        check "oh-my-posh-config.json is similar to the remote file for $user_home" diff "$user_home/oh-my-posh-config.json" <(curl -s https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/pure.omp.json)
+        check "oh-my-posh-config.json is similar to the remote file for $user_home" diff "$user_home/oh-my-posh-config.json" <(curl -s https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/refs/heads/main/themes/pure.omp.json)
     fi
 done
 
