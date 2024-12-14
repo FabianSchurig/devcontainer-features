@@ -7,7 +7,8 @@ A feature to install oh-my-posh with transient prompt using oh-my-zsh
 ```json
 "features": {
     "ghcr.io/devcontainers/feature-starter/oh-my-posh:1": {
-        "additionalPlugins": "zsh-autosuggestions,zsh-syntax-highlighting"
+        "plugins": "git,debian,docker,sudo,vscode,poetry,postgres,cp",
+        "theme": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/refs/heads/main/themes/powerlevel10k_rainbow.omp.json"
     }
 }
 ```
@@ -16,7 +17,8 @@ A feature to install oh-my-posh with transient prompt using oh-my-zsh
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| additionalPlugins | Comma-separated list of additional zsh plugins to install | string |  |
+| plugins | Space separated list of additional zsh plugins to configure | string | git debian docker sudo vscode poetry postgres cp |
+| theme | The theme to use for oh-my-posh | string | https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/refs/heads/main/themes/powerlevel10k_rainbow.omp.json |
 
 ---
 

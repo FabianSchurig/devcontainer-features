@@ -53,13 +53,12 @@ my favorite color is green
 ### `oh-my-posh`
 
 Running `oh-my-posh` inside the built container will install oh-my-posh with transient prompt using oh-my-zsh.
-
 ```jsonc
 {
     "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
     "features": {
         "ghcr.io/devcontainers/feature-starter/oh-my-posh:1": {
-            "additionalPlugins": "zsh-autosuggestions,zsh-syntax-highlighting"
+            "plugins": "zsh-autosuggestions zsh-syntax-highlighting"
         }
     }
 }
