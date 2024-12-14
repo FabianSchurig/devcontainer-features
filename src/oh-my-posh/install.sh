@@ -32,7 +32,9 @@ done
 
 # Install oh-my-posh for root
 if ! command -v oh-my-posh &> /dev/null; then
-  curl -s https://ohmyposh.dev/install.sh | bash -s -- -d /usr/local/bin
+  curl -s https://ohmyposh.dev/install.sh -o /tmp/install-oh-my-posh.sh
+  bash /tmp/install-oh-my-posh.sh -d /usr/local/bin
+  rm /tmp/install-oh-my-posh.sh
 fi
 
 # Fetch the oh-my-posh configuration file from the provided URL and copy it to /etc/skel
@@ -45,7 +47,7 @@ for user in /root /home/*; do
     cp /etc/skel/oh-my-posh-config.json $user/
     chown $(basename $user):$(basename $user) $user/oh-my-posh-config.json
     chmod 644 $user/oh-my-posh-config.json
-    runuser -l $(basename $user) -c 'echo "source ~/.profile && eval \"$(oh-my-posh init zsh --config $HOME/oh-my-posh-config.json)\"" >> $HOME/.zshrc'
+    runuser -l $(basename $user) -c 'echo "eval \"$(oh-my-posh init zsh --config $HOME/oh-my-posh-config.json)\"" >> $HOME/.zshrc'
   fi
 done
 
