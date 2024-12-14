@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
 # Install zsh, curl, oh-my-zsh, and oh-my-posh for all users in /home/* and /root if not already installed.
@@ -33,7 +33,11 @@ done
 # Install oh-my-posh for root
 if ! command -v oh-my-posh &> /dev/null; then
   curl -s https://ohmyposh.dev/install.sh -o /tmp/install-oh-my-posh.sh
-  bash /tmp/install-oh-my-posh.sh -d /usr/local/bin
+  bash /tmp/install-oh-my-posh.sh -d /usr/local/bin | tee /tmp/oh-my-posh-install.log | tee /dev/tty
+  if [ ${PIPESTATUS[0]} -ne 0 ]; then
+    echo "Oh-my-posh installation failed. Check /tmp/oh-my-posh-install.log for details."
+    exit 1
+  fi
   rm /tmp/install-oh-my-posh.sh
 fi
 
