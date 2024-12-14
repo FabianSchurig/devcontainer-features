@@ -1,0 +1,17 @@
+{
+    "oh-my-posh-default": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "oh-my-posh": {}
+        }
+    },
+    "oh-my-posh-plugins": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "oh-my-posh": {
+                "plugins": "zsh-autosuggestions zsh-syntax-highlighting",
+                "theme": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/refs/heads/main/themes/pure.omp.json"
+            }
+        }
+    }
+}
