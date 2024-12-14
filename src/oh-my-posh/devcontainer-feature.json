@@ -4,10 +4,15 @@
     "version": "1.0.0",
     "description": "A feature to install oh-my-posh with transient prompt using oh-my-zsh",
     "options": {
-        "additionalPlugins": {
+        "plugins": {
             "type": "string",
-            "default": "",
-            "description": "Comma-separated list of additional zsh plugins to install"
+            "default": "git debian docker sudo vscode poetry postgres cp",
+            "description": "Space separated flst of additional zsh plugins to configure"
+        },
+        "theme": {
+            "type": "string",
+            "default": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/refs/heads/main/themes/powerlevel10k_rainbow.omp.json",
+            "description": "The theme to use for oh-my-posh"
         }
     },
     "installsAfter": [
