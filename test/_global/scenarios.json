@@ -1,13 +1,8 @@
 {
-    "color_and_hello": {
+    "oh_my_posh": {
         "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
-            "color": {
-                "favorite": "purple"
-            },
-            "hello": {
-                "greeting": "Greetings"
-            }
+            "oh-my-posh": {}
         }
     }
 }
