@@ -47,7 +47,7 @@ for user in /root /home/*; do
     cp /etc/skel/oh-my-posh-config.json $user/
     chown $(basename $user):$(basename $user) $user/oh-my-posh-config.json
     chmod 644 $user/oh-my-posh-config.json
-    runuser -l $(basename $user) -c "echo \"oh-my-posh init zsh --config \$HOME/oh-my-posh-config.json\" >> \"$user/.zshrc\""
+    runuser -l $(basename $user) -c "echo \"eval \\\"\$(oh-my-posh init zsh --config \$HOME/oh-my-posh-config.json)\\\"\" >> \"$user/.zshrc\""
   fi
 done
 

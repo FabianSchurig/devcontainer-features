@@ -16,7 +16,7 @@ check "oh-my-posh is installed" oh-my-posh --version
 for user_home in /home/*; do
     if [ -d "$user_home" ]; then
         cat "$user_home/.zshrc"
-        check "oh-my-posh configuration is applied for $user_home" grep "oh-my-posh init zsh --config" "$user_home/.zshrc"
+        check "oh-my-posh configuration is applied for $user_home" grep "eval \"\$(oh-my-posh init zsh --config \$HOME/oh-my-posh-config.json)\"" "$user_home/.zshrc"
     fi
 done
 
