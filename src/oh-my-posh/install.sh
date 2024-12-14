@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
-set -x
 
 # Install zsh, curl, oh-my-zsh, and oh-my-posh for all users in /home/* and /root if not already installed.
 if ! command -v zsh &> /dev/null; then

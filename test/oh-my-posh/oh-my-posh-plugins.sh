@@ -13,9 +13,10 @@ check "zsh is installed" zsh --version
 check "curl is installed" curl --version
 check "oh-my-zsh is installed" [ -d "$HOME/.oh-my-zsh" ]
 check "oh-my-posh is installed" oh-my-posh --version
-check "oh-my-posh configuration is applied" grep "oh-my-posh init zsh --config" ~/.zshrc
-check "zsh-autosuggestions plugin is installed" grep "zsh-autosuggestions" ~/.zshrc
-check "zsh-syntax-highlighting plugin is installed" grep "zsh-syntax-highlighting"~/.zshrc
+cat $HOME/.zshrc
+check "oh-my-posh configuration is applied" grep "oh-my-posh init zsh --config" $HOME/.zshrc
+check "zsh-autosuggestions plugin is installed" grep "zsh-autosuggestions" $HOME/.zshrc
+check "zsh-syntax-highlighting plugin is installed" grep "zsh-syntax-highlighting" $HOME/.zshrc
 
 # Report results
 # If any of the checks above exited with a non-zero exit code, the test will fail.
