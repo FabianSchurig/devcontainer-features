@@ -3,18 +3,18 @@ set -e
 
 # Install zsh, curl, oh-my-zsh, and oh-my-posh for all users in /home/* and /root if not already installed.
 if ! command -v zsh &> /dev/null; then
-    apt-get update
-    apt-get install -y zsh
+  apt-get update
+  apt-get install -y zsh
 fi
 
 if ! command -v curl &> /dev/null; then
-    apt-get install -y curl
+  apt-get install -y curl
 fi
 
 # Install oh-my-zsh for /root and each user in /home/*
 for user in /root /home/*; do
   if [ ! -d "$user/.oh-my-zsh" ]; then
-    sudo -u $(basename $user) sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    runuser -l $(basename $user) -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   fi
 done
 
