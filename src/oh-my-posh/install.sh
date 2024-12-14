@@ -34,7 +34,7 @@ done
 # Install oh-my-posh for root
 if ! command -v oh-my-posh &> /dev/null; then
   curl -s https://ohmyposh.dev/install.sh -o /tmp/install-oh-my-posh.sh
-  bash /tmp/install-oh-my-posh.sh -d /usr/local/bin 2>&1 > /dev/null
+  bash /tmp/install-oh-my-posh.sh -d /usr/local/bin > /tmp/install-oh-my-posh.log 2>&1 || { cat /tmp/install-oh-my-posh.log; exit 1; }
   rm /tmp/install-oh-my-posh.sh
 fi
 
