@@ -1,7 +1,7 @@
 {
     "name": "oh-my-posh",
     "id": "oh-my-posh",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A feature to install oh-my-posh with transient prompt using oh-my-zsh",
     "options": {
         "plugins": {
