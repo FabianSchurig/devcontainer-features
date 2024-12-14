@@ -34,7 +34,7 @@ done
 # Install oh-my-posh for root
 if ! command -v oh-my-posh &> /dev/null; then
   curl -s https://ohmyposh.dev/install.sh -o /tmp/install-oh-my-posh.sh
-  bash /tmp/install-oh-my-posh.sh -d /usr/local/bin > /tmp/install-oh-my-posh.log 2>&1 || { cat /tmp/install-oh-my-posh.log; exit 1; }
+  sh /tmp/install-oh-my-posh.sh -d /usr/local/bin 2>&1
   rm /tmp/install-oh-my-posh.sh
 fi
 
@@ -56,6 +56,7 @@ done
 PLUGINS=${plugins:-"git debian docker sudo vscode poetry postgres cp"}
 for user in /root /home/*; do
   if [ -d "$user" ] && [ -d "$user/.oh-my-zsh" ]; then
-    runuser -l $(basename $user) -c "sed -i '/^plugins=/ s/)/ $PLUGINS)/' \$HOME/.zshrc"
+    echo "Installing additional plugins for $(basename $user) in $user/.zshrc: $PLUGINS"
+    runuser -l $(basename $user) -c "sed -i '/^plugins=/ s/)/ $PLUGINS)/' $user/.zshrc"
   fi
 done
