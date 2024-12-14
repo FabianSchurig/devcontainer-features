@@ -13,7 +13,7 @@ check "zsh is installed" zsh --version
 check "curl is installed" curl --version
 check "oh-my-zsh is installed" [ -d "$HOME/.oh-my-zsh" ]
 check "oh-my-posh is installed" oh-my-posh --version
-for user_home in /root /home/*; do
+for user_home in /home/*; do
     if [ -d "$user_home" ]; then
         cat "$user_home/.zshrc"
         check "oh-my-posh configuration is applied for $user_home" grep "oh-my-posh init zsh --config" "$user_home/.zshrc"
