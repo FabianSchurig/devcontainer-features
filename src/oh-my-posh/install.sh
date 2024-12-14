@@ -32,8 +32,8 @@ done
 
 # Install oh-my-posh for root
 if ! command -v oh-my-posh &> /dev/null; then
-  curl -s https://ohmyposh.dev/install.sh | bash -s
-  bash -c 'source ~/.profile && oh-my-posh font install meslo'
+  curl -s https://ohmyposh.dev/install.sh | bash -s -- -d /usr/local/bin
+  oh-my-posh font install meslo
 fi
 
 # Fetch the oh-my-posh configuration file from the provided URL and copy it to /etc/skel
