@@ -27,14 +27,14 @@ fi
 # Install oh-my-zsh for /root and each user in /home/*
 for user in /root /home/*; do
   if [ -d "$user" ] && [ ! -d "$user/.oh-my-zsh" ]; then
-    runuser -l $(basename $user) -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    runuser -l $(basename $user) -c "sh -c \"\$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\" \"\" --unattended"
   fi
 done
 
 # Install oh-my-posh for root
 if ! command -v oh-my-posh &> /dev/null; then
   curl -s https://ohmyposh.dev/install.sh -o /tmp/install-oh-my-posh.sh
-  sh /tmp/install-oh-my-posh.sh -d /usr/local/bin 2>&1
+  bash /tmp/install-oh-my-posh.sh -d /usr/local/bin 2>&1
   rm /tmp/install-oh-my-posh.sh
 fi
 
