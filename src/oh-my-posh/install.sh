@@ -7,12 +7,20 @@ if ! command -v zsh &> /dev/null; then
   apt-get install -y zsh
 fi
 
+if ! command -v unzip &> /dev/null; then
+  apt-get install -y unzip
+fi
+
 if ! command -v curl &> /dev/null; then
   apt-get install -y curl
 fi
 
 if ! command -v git &> /dev/null; then
   apt-get install -y git
+fi
+
+if ! command -v realpath &> /dev/null; then
+  apt-get install -y coreutils
 fi
 
 # Install oh-my-zsh for /root and each user in /home/*
