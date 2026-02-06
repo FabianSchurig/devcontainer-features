@@ -74,7 +74,6 @@ install_yocto_dependencies() {
                 g++ \
                 gcc-multilib \
                 lz4 \
-                zstd \
                 tar \
                 bzip2 \
                 gzip \
@@ -104,7 +103,9 @@ install_yocto_dependencies() {
     esac
     
     # Set up locale (required for Yocto builds)
-    echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+    if ! grep -q "en_US.UTF-8 UTF-8" /etc/locale.gen; then
+        echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+    fi
     locale-gen en_US.UTF-8
     update-locale LANG=en_US.UTF-8
 }
