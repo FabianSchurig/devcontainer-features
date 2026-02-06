@@ -15,18 +15,6 @@ Install Yocto build dependencies with default settings:
 }
 ```
 
-### Specify Yocto Version
-
-Target a specific Yocto release version:
-
-```json
-"features": {
-    "ghcr.io/FabianSchurig/devcontainer-features/yocto-build-tools:1": {
-        "version": "kirkstone"
-    }
-}
-```
-
 ### With Buildtools Installation
 
 Install Yocto buildtools from a URL (useful for older host distributions):
@@ -34,9 +22,20 @@ Install Yocto buildtools from a URL (useful for older host distributions):
 ```json
 "features": {
     "ghcr.io/FabianSchurig/devcontainer-features/yocto-build-tools:1": {
-        "version": "scarthgap",
         "buildtoolsUrl": "http://downloads.yoctoproject.org/releases/yocto/yocto-5.0/buildtools/x86_64-buildtools-extended-nativesdk-standalone-5.0.sh",
         "buildtoolsPath": "/opt/yocto-buildtools"
+    }
+}
+```
+
+### Skip Dependencies Installation
+
+Install only the feature configuration without dependencies (useful if dependencies are already installed):
+
+```json
+"features": {
+    "ghcr.io/FabianSchurig/devcontainer-features/yocto-build-tools:1": {
+        "installDependencies": false
     }
 }
 ```
@@ -65,7 +64,6 @@ bitbake core-image-minimal
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| version | Yocto/Poky version to prepare for (e.g., kirkstone, scarthgap, nanbield). This ensures compatible package versions are installed. | string | scarthgap |
 | buildtoolsUrl | Optional URL to download and install Yocto buildtools tarball (e.g., buildtools-extended tarball for specific host distributions) | string | - |
 | buildtoolsPath | Path where buildtools should be installed if buildtoolsUrl is provided | string | /opt/yocto-buildtools |
 | installDependencies | Install required build dependencies for Yocto (based on distribution) | boolean | true |
@@ -91,7 +89,6 @@ Based on the [Yocto Project System Requirements](https://docs.yoctoproject.org/r
 
 - The feature automatically configures UTF-8 locale required for Yocto builds
 - If buildtoolsUrl is provided, the buildtools environment is automatically sourced via /etc/profile.d/
-- See `/usr/local/share/yocto-info.txt` inside the container for quick reference
 
 ---
 

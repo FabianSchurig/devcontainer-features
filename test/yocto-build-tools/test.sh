@@ -42,9 +42,6 @@ check "file is installed" file --version
 # Check locale setup
 check "UTF-8 locale is configured" locale | grep "en_US.UTF-8"
 
-# Check info file exists
-check "yocto-info.txt exists" test -f /usr/local/share/yocto-info.txt
-
 echo "Basic Yocto build tools tests completed!"
 
 # Report result

@@ -4,11 +4,6 @@
     "version": "1.0.0",
     "description": "Installs Yocto Project build tools and dependencies for building embedded Linux distributions",
     "options": {
-        "version": {
-            "type": "string",
-            "default": "scarthgap",
-            "description": "Yocto/Poky version to prepare for (e.g., kirkstone, scarthgap, nanbield). This ensures compatible package versions are installed."
-        },
         "buildtoolsUrl": {
             "type": "string",
             "default": "",

@@ -29,10 +29,6 @@ check "zstd is installed" zstd --version
 # Check locale setup
 check "UTF-8 locale is configured" locale | grep "en_US.UTF-8"
 
-# Check info file exists and contains expected version
-check "yocto-info.txt exists" test -f /usr/local/share/yocto-info.txt
-check "yocto-info.txt contains scarthgap version" grep "scarthgap" /usr/local/share/yocto-info.txt
-
 echo "Default installation tests completed!"
 
 # Report results
