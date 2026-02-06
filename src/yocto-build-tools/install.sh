@@ -115,7 +115,7 @@ install_yocto_dependencies() {
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 EOF
-    chmod 644 /etc/profile.d/yocto-locale.sh
+    chmod 755 /etc/profile.d/yocto-locale.sh
     
     # Export for current shell and container environment
     export LANG=en_US.UTF-8
