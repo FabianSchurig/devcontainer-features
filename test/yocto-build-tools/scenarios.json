@@ -1,0 +1,24 @@
+{
+    "yocto-default": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "yocto-build-tools": {}
+        }
+    },
+    "yocto-kirkstone": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "yocto-build-tools": {
+                "version": "kirkstone"
+            }
+        }
+    },
+    "yocto-no-deps": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "yocto-build-tools": {
+                "installDependencies": false
+            }
+        }
+    }
+}

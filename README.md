@@ -29,6 +29,29 @@ $ zsh
 # oh-my-posh with transient prompt using oh-my-zsh is now installed and configured.
 ```
 
+### `yocto-build-tools`
+
+Installs Yocto Project build tools and dependencies for building embedded Linux distributions.
+
+```jsonc
+{
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+        "ghcr.io/FabianSchurig/devcontainer-features/yocto-build-tools:1": {
+            "version": "scarthgap"
+        }
+    }
+}
+```
+
+```bash
+# Clone Poky and build a minimal image
+git clone -b scarthgap git://git.yoctoproject.org/poky.git
+cd poky
+source oe-init-build-env
+bitbake core-image-minimal
+```
+
 ## Repo and Feature Structure
 
 Similar to the [`devcontainers/features`](https://github.com/devcontainers/features) repo, this repository has a `src` folder.  Each Feature has its own sub-folder, containing at least a `devcontainer-feature.json` and an entrypoint script `install.sh`. 
