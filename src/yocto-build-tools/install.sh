@@ -63,7 +63,7 @@ install_yocto_dependencies() {
                 python3-jinja2 \
                 python3-subunit \
                 zstd \
-                liblz4-tool \
+                lz4 \
                 file \
                 locales \
                 libacl1

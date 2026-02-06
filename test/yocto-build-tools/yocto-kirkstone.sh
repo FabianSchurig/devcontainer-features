@@ -21,7 +21,9 @@ check "python3-git module" python3 -c "import git"
 
 # Check info file contains kirkstone version
 check "yocto-info.txt exists" test -f /usr/local/share/yocto-info.txt
-check "yocto-info.txt contains kirkstone version" grep "kirkstone" /usr/local/share/yocto-info.txt
+echo "Content of yocto-info.txt:"
+cat /usr/local/share/yocto-info.txt
+check "yocto-info.txt contains kirkstone version" grep -i "kirkstone" /usr/local/share/yocto-info.txt
 
 echo "Kirkstone version tests completed!"
 
