@@ -4,12 +4,12 @@ set -e
 echo "Activating feature 'yocto-build-tools'"
 
 # Get options from environment variables
-VERSION=${VERSION:-"scarthgap"}
+YOCTO_VERSION=${VERSION:-"scarthgap"}
 BUILDTOOLS_URL=${BUILDTOOLSURL:-""}
 BUILDTOOLS_PATH=${BUILDTOOLSPATH:-"/opt/yocto-buildtools"}
 INSTALL_DEPENDENCIES=${INSTALLDEPENDENCIES:-"true"}
 
-echo "Yocto version: ${VERSION}"
+echo "Yocto version: ${YOCTO_VERSION}"
 echo "Install dependencies: ${INSTALL_DEPENDENCIES}"
 echo "Buildtools URL: ${BUILDTOOLS_URL}"
 echo "Buildtools path: ${BUILDTOOLS_PATH}"
@@ -191,14 +191,14 @@ cat > /usr/local/share/yocto-info.txt << EOF
 Yocto Build Tools Feature
 ==========================
 
-Version: ${VERSION}
+Version: ${YOCTO_VERSION}
 Installation Date: $(date)
 
 This container has been configured with Yocto Project build dependencies.
 
 Next steps:
 1. Clone Poky repository:
-   git clone -b ${VERSION} git://git.yoctoproject.org/poky.git
+   git clone -b ${YOCTO_VERSION} git://git.yoctoproject.org/poky.git
    
 2. Initialize build environment:
    cd poky
