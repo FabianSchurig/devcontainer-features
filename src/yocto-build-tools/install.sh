@@ -108,6 +108,18 @@ install_yocto_dependencies() {
     fi
     locale-gen en_US.UTF-8
     update-locale LANG=en_US.UTF-8
+    
+    # Set locale environment variables for all shells
+    cat > /etc/profile.d/yocto-locale.sh << 'EOF'
+# Set locale for Yocto builds
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+EOF
+    chmod 644 /etc/profile.d/yocto-locale.sh
+    
+    # Export for current shell and container environment
+    export LANG=en_US.UTF-8
+    export LC_ALL=en_US.UTF-8
 }
 
 # Function to install buildtools from URL
