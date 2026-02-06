@@ -15,6 +15,7 @@ jobs:
         features:
           - oh-my-posh
           - yocto-build-tools
+          - yocto-esdk
         baseImage:
           - debian:latest
           - ubuntu:latest
@@ -36,6 +37,7 @@ jobs:
         features:
           - oh-my-posh
           - yocto-build-tools
+          - yocto-esdk
     steps:
       - uses: actions/checkout@v4
 
