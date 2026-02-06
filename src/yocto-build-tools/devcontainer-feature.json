@@ -1,0 +1,30 @@
+{
+    "name": "Yocto Build Tools",
+    "id": "yocto-build-tools",
+    "version": "1.0.0",
+    "description": "Installs Yocto Project build tools and dependencies for building embedded Linux distributions",
+    "options": {
+        "buildtoolsUrl": {
+            "type": "string",
+            "default": "",
+            "description": "Optional URL to download and install Yocto buildtools tarball (e.g., buildtools-extended tarball for specific host distributions)"
+        },
+        "buildtoolsPath": {
+            "type": "string",
+            "default": "/opt/yocto-buildtools",
+            "description": "Path where buildtools should be installed if buildtoolsUrl is provided"
+        },
+        "installDependencies": {
+            "type": "boolean",
+            "default": true,
+            "description": "Install required build dependencies for Yocto (based on distribution)"
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ],
+    "containerEnv": {
+        "LANG": "en_US.UTF-8",
+        "LC_ALL": "en_US.UTF-8"
+    }
+}

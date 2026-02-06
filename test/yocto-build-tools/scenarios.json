@@ -1,0 +1,16 @@
+{
+    "yocto-default": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "yocto-build-tools": {}
+        }
+    },
+    "yocto-no-deps": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "yocto-build-tools": {
+                "installDependencies": false
+            }
+        }
+    }
+}
