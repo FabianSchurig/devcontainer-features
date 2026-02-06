@@ -106,8 +106,13 @@ install_yocto_dependencies() {
     if ! grep -q "en_US.UTF-8 UTF-8" /etc/locale.gen; then
         echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
     fi
+    
+    # Generate locale without LC_ALL set
+    unset LC_ALL
     locale-gen en_US.UTF-8
-    update-locale LANG=en_US.UTF-8
+    
+    # Update locale configuration (ignore errors on minimal systems)
+    update-locale LANG=en_US.UTF-8 2>/dev/null || true
     
     # Set locale environment variables for all shells
     cat > /etc/profile.d/yocto-locale.sh << 'EOF'
