@@ -88,9 +88,7 @@ setup_esdk_environment() {
     
     # Find the environment setup script
     local env_script=""
-    if [ -f "${install_path}/environment-setup-"* ]; then
-        env_script=$(find "${install_path}" -maxdepth 1 -name "environment-setup-*" -type f | head -n 1)
-    fi
+    env_script=$(find "${install_path}" -maxdepth 1 -name "environment-setup-*" -type f 2>/dev/null | head -n 1)
     
     if [ -z "${env_script}" ]; then
         echo "Warning: Could not find environment-setup script in ${install_path}"

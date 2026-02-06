@@ -12,8 +12,8 @@ echo "Testing Yocto eSDK with no URL scenario..."
 # The feature should complete successfully even without a URL
 check "feature installation succeeded" bash -c "echo 'Test passed'"
 
-# No eSDK should be installed
-check "no SDK installed" bash -c "[ ! -d /opt/yocto-esdk ] || [ -z \"\$(ls -A /opt/yocto-esdk 2>/dev/null)\" ]"
+# No eSDK should be installed - check that path doesn't exist or is empty
+check "no SDK installed" bash -c "[ ! -d /opt/yocto-esdk ] || [ ! -e /opt/yocto-esdk/* ]"
 
 echo "No-URL scenario test completed!"
 

@@ -17,8 +17,8 @@ echo "Testing Yocto eSDK installation..."
 # but should not install anything (including dependencies)
 check "feature completed without error" bash -c "echo 'Feature ran successfully'"
 
-# Check that the install path does not exist (since no URL was provided)
-check "install path should not exist" bash -c "[ ! -d /opt/yocto-esdk ] || [ -z \"\$(ls -A /opt/yocto-esdk 2>/dev/null)\" ]"
+# Check that the install path does not exist or is empty (since no URL was provided)
+check "install path does not exist or is empty" bash -c "[ ! -d /opt/yocto-esdk ] || [ ! -e /opt/yocto-esdk/* ]"
 
 echo "Yocto eSDK (no URL) tests completed!"
 
