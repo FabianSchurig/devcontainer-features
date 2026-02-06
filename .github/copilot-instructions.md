@@ -44,13 +44,14 @@ Each feature MUST contain:
 
 ### Shell Script Best Practices
 
-1. **Always use bash shebang**: `#!/bin/bash` or `#!/usr/bin/env bash`
+1. **Always use bash shebang**: `#!/usr/bin/env bash` (preferred for portability) or `#!/bin/bash`
 2. **Use set flags for safety**:
    ```bash
-   set -e  # Exit on error
+   set -e  # Exit on error (note: doesn't catch errors in command substitutions by default)
    set -u  # Exit on undefined variable
    set -o pipefail  # Exit on pipe failure
    ```
+   Note: When using `set -e`, be aware it doesn't affect command substitutions like `$(command)` unless you use `set -o errexit` explicitly. Test error handling in conditionals carefully.
 3. **Quote variables**: Always use `"${VARIABLE}"` syntax
 4. **Use meaningful variable names**: Feature options are exported as capitalized environment variables
 5. **Add error handling**: Check command success and provide meaningful error messages
@@ -239,8 +240,9 @@ Create test scenarios in `test/<feature-name>/*.sh` to validate:
 
 ### oh-my-posh Feature
 
-- Installs oh-my-posh with transient prompt using oh-my-zsh
-- Configurable plugins and themes
+- Installs oh-my-posh (prompt theme engine) with transient prompt
+- Uses oh-my-zsh (zsh configuration framework) for shell configuration and plugin management
+- Configurable plugins (managed by oh-my-zsh) and themes (managed by oh-my-posh)
 - Requires zsh to be installed
 - Uses `installsAfter` to ensure common-utils installs first
 
