@@ -52,6 +52,29 @@ source oe-init-build-env
 bitbake core-image-minimal
 ```
 
+### `yocto-esdk`
+
+Installs Yocto Extensible SDK (eSDK) from a provided repository URL. The eSDK provides a complete development environment including BitBake and a configured sysroot. This feature is minimal and accepts a repository URL (Artifactory, HTTP server, etc.) as input.
+
+```jsonc
+{
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+        "ghcr.io/FabianSchurig/devcontainer-features/yocto-esdk:1": {
+            "sdkUrl": "https://example.com/path/to/esdk-installer.sh",
+            "installPath": "/opt/yocto-esdk",
+            "autoSourceEnvironment": true
+        }
+    }
+}
+```
+
+```bash
+# The eSDK environment is automatically sourced
+# You can now use BitBake and other SDK tools directly
+bitbake <recipe-name>
+```
+
 ## Repo and Feature Structure
 
 Similar to the [`devcontainers/features`](https://github.com/devcontainers/features) repo, this repository has a `src` folder.  Each Feature has its own sub-folder, containing at least a `devcontainer-feature.json` and an entrypoint script `install.sh`. 

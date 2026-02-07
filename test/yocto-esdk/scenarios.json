@@ -1,0 +1,8 @@
+{
+    "esdk-no-url": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "yocto-esdk": {}
+        }
+    }
+}

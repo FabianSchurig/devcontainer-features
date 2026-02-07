@@ -1,0 +1,30 @@
+{
+    "name": "Yocto Extensible SDK (eSDK)",
+    "id": "yocto-esdk",
+    "version": "1.0.0",
+    "description": "Installs Yocto Extensible SDK (eSDK) from a provided repository URL. The eSDK provides a complete development environment including BitBake and a configured sysroot.",
+    "options": {
+        "sdkUrl": {
+            "type": "string",
+            "default": "",
+            "description": "URL to the Yocto eSDK self-extracting installer script (e.g., from Artifactory, HTTP server). Leave empty to skip installation."
+        },
+        "installPath": {
+            "type": "string",
+            "default": "/opt/yocto-esdk",
+            "description": "Path where the eSDK should be installed"
+        },
+        "autoSourceEnvironment": {
+            "type": "boolean",
+            "default": true,
+            "description": "Automatically source the eSDK environment setup script in profile.d for all users"
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ],
+    "containerEnv": {
+        "LANG": "en_US.UTF-8",
+        "LC_ALL": "en_US.UTF-8"
+    }
+}
