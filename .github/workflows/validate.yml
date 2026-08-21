@@ -16,4 +16,4 @@ jobs:
           base-path-to-features: "./src"
 
       - name: "Check the bitbucket-mcp image tag is consistent"
-        run: ./.github/scripts/check-image-tag-consistency.sh
+        run: bash ./.github/scripts/check-image-tag-consistency.sh

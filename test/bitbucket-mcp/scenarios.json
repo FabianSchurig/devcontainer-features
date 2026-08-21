@@ -2,7 +2,9 @@
     "bitbucket-mcp-with-docker": {
         "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
-            "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+            "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+                "moby": false
+            },
             "bitbucket-mcp": {}
         }
     },

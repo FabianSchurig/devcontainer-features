@@ -2,6 +2,10 @@
 
 # Scenario: the feature alongside a Docker CLI, which is what a real user needs
 # for the MCP server to actually start.
+#
+# docker-outside-of-docker is installed with "moby": false so the scenario
+# still runs on floating Ubuntu tags (currently "resolute") where the default
+# moby-cli packages are not available.
 
 set -e
 
