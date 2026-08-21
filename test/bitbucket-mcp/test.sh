@@ -19,15 +19,11 @@ check "post-create.sh is executable" test -x "$POST_CREATE"
 source "$CONFIG_FILE"
 
 # postCreateCommand runs as the remote user; these tests may run as root.
-# Extra arguments are passed through `env`, so callers can inject variables.
 run_post_create() {
     if [ "$(id -un)" = "$TARGET_USER" ]; then
-        env "$@" "$POST_CREATE"
+        "$POST_CREATE"
     elif command -v runuser >/dev/null 2>&1; then
-        runuser -u "$TARGET_USER" -- env "$@" "$POST_CREATE"
-    elif [ "$#" -gt 0 ]; then
-        # `su -c` cannot pass argv, so extra env is applied as the current user.
-        env "$@" "$POST_CREATE"
+        runuser -u "$TARGET_USER" -- "$POST_CREATE"
     else
         su -s /bin/bash "$TARGET_USER" -c "$POST_CREATE"
     fi
@@ -102,18 +98,20 @@ check "a repeat run leaves the credentials file byte-identical" \
     bash -c "[ \"\$(sha256sum '$ENV_FILE' | cut -d' ' -f1)\" = '$ENV_BEFORE' ]"
 
 # --- credentials with a newline fall back to the template -------------------
+# Run the hook directly (not via `env`/`runuser`): those tools cannot pass a
+# value that contains a newline, which is the case this path is testing.
 
 rm -f "$ENV_FILE"
-run_post_create \
-    BITBUCKET_USERNAME='someone@example.com' \
-    BITBUCKET_TOKEN=$'tok\nenv-injection=1'
+BITBUCKET_USERNAME='someone@example.com' \
+BITBUCKET_TOKEN="$(printf 'safe\ninjected=1')" \
+    "$POST_CREATE"
 
-check "a token with a newline does not get written" \
-    bash -c "! grep -q 'tok' '$ENV_FILE'"
 check "a newline in the token does not inject extra env-file records" \
-    bash -c "! grep -q 'env-injection' '$ENV_FILE'"
+    bash -c "! grep -q '^injected=' '$ENV_FILE'"
 check "the commented template is written instead" \
     bash -c "grep -q 'your-api-token' '$ENV_FILE'"
+check "no active credential values were written" \
+    bash -c "! grep -qE '^[A-Z]' '$ENV_FILE'"
 
 # --- a malformed config is never clobbered ----------------------------------
 
