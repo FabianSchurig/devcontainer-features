@@ -1,0 +1,48 @@
+{
+    "id": "bitbucket-mcp",
+    "version": "1.0.0",
+    "name": "Bitbucket MCP Server",
+    "description": "Registers the bb-mcp Bitbucket MCP server for VS Code and Cursor, and seeds its credentials file",
+    "documentationURL": "https://github.com/FabianSchurig/bitbucket-cli/blob/main/docs/mcp.md",
+    "licenseURL": "https://github.com/FabianSchurig/devcontainer-features/blob/main/LICENSE",
+    "keywords": [
+        "bitbucket",
+        "mcp",
+        "copilot",
+        "cursor",
+        "ai"
+    ],
+    "options": {
+        "configureCursor": {
+            "type": "boolean",
+            "default": true,
+            "description": "Also register the server in ~/.cursor/mcp.json for Cursor, which does not read customizations.vscode.mcp"
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils",
+        "ghcr.io/devcontainers/features/docker-outside-of-docker",
+        "ghcr.io/devcontainers/features/docker-in-docker"
+    ],
+    "postCreateCommand": "/usr/local/share/bitbucket-mcp/post-create.sh",
+    "customizations": {
+        "vscode": {
+            "mcp": {
+                "servers": {
+                    "bitbucket-mcp-server": {
+                        "type": "stdio",
+                        "command": "docker",
+                        "args": [
+                            "run",
+                            "--rm",
+                            "-i",
+                            "--env-file",
+                            "${userHome}/.config/bitbucket-mcp.env",
+                            "ghcr.io/fabianschurig/bitbucket-mcp:0.20.2"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "bitbucket-mcp-with-docker": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+                "moby": false
+            },
+            "bitbucket-mcp": {}
+        }
+    },
+    "bitbucket-mcp-no-cursor": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "bitbucket-mcp": {
+                "configureCursor": false
+            }
+        }
+    },
+    "bitbucket-mcp-existing-env-file": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "remoteEnv": {
+            "BITBUCKET_USERNAME": "someone@example.com",
+            "BITBUCKET_TOKEN": "token-from-the-environment"
+        },
+        "features": {
+            "bitbucket-mcp": {}
+        }
+    }
+}
