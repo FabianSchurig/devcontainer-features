@@ -52,6 +52,27 @@ source oe-init-build-env
 bitbake core-image-minimal
 ```
 
+### `bitbucket-mcp`
+
+Registers the [`bb-mcp`](https://github.com/FabianSchurig/bitbucket-cli) Bitbucket MCP server so agents can query Bitbucket from inside the container, and seeds the credentials file it reads.
+
+```jsonc
+{
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+        // The MCP server runs as `docker run`, so a Docker CLI is required.
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+        "ghcr.io/FabianSchurig/devcontainer-features/bitbucket-mcp:1": {}
+    },
+    "remoteEnv": {
+        "BITBUCKET_USERNAME": "${localEnv:BITBUCKET_USERNAME}",
+        "BITBUCKET_TOKEN": "${localEnv:BITBUCKET_TOKEN}"
+    }
+}
+```
+
+VS Code picks the server up from the feature's `customizations.vscode.mcp` metadata. Cursor does not read that, so the feature also writes the same definition into `~/.cursor/mcp.json`, merging rather than overwriting an existing config. See [the feature notes](src/bitbucket-mcp/NOTES.md) for the other ways to supply credentials.
+
 ## Repo and Feature Structure
 
 Similar to the [`devcontainers/features`](https://github.com/devcontainers/features) repo, this repository has a `src` folder.  Each Feature has its own sub-folder, containing at least a `devcontainer-feature.json` and an entrypoint script `install.sh`. 
