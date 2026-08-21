@@ -81,6 +81,15 @@ fix_owner() {
     fi
 }
 
+# docker --env-file treats newlines as record separators, so a value that
+# contains one would inject extra variables or truncate the token.
+has_line_break() {
+    case "$1" in
+        *$'\n'*|*$'\r'*) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
 # A credentials file bind-mounted from the host is already in place before
 # postCreate runs, so an existing file is always left exactly as it is.
 seed_env_file() {
@@ -93,7 +102,8 @@ seed_env_file() {
     : > "$ENV_FILE" || return 1
     chmod 600 "$ENV_FILE"
 
-    if [ -n "${BITBUCKET_USERNAME:-}" ] && [ -n "${BITBUCKET_TOKEN:-}" ]; then
+    if [ -n "${BITBUCKET_USERNAME:-}" ] && [ -n "${BITBUCKET_TOKEN:-}" ] && \
+        ! has_line_break "$BITBUCKET_USERNAME" && ! has_line_break "$BITBUCKET_TOKEN"; then
         # Unquoted on purpose: docker --env-file takes values verbatim, so
         # quotes would become part of the token and cause 401 Unauthorized.
         {
@@ -102,6 +112,9 @@ seed_env_file() {
         } >> "$ENV_FILE"
         log "wrote credentials from the environment to ${ENV_FILE}"
     else
+        if has_line_break "${BITBUCKET_USERNAME:-}" || has_line_break "${BITBUCKET_TOKEN:-}"; then
+            log "WARNING: BITBUCKET_USERNAME/TOKEN contain a newline; writing the template instead"
+        fi
         cat >> "$ENV_FILE" <<'TEMPLATE'
 # Credentials for the Bitbucket MCP server, read by `docker run --env-file`.
 # Do not quote the values: docker passes them through verbatim and the quotes

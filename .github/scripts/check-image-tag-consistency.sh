@@ -18,7 +18,7 @@ extract() {
     fi
     if [ "$(printf '%s\n' "$tag" | wc -l)" -ne 1 ]; then
         echo "Conflicting image references inside ${file}:" >&2
-        printf '  %s\n' $tag >&2
+        printf '  %s\n' "$tag" >&2
         exit 1
     fi
     printf '%s' "$tag"
